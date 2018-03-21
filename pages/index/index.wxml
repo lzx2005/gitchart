@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <block>
+      <image class="userinfo-avatar" src="{{githubUserInfo.avatar_url}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{githubUserInfo.login}}</text>
+      <text class="userinfo-nickname">{{githubUserInfo.bio}}</text>
+    </block>
+  </view>
+  <view class="page__bd">
+      <view class="weui-grids">
+          <block wx:for="{{grids}}">
+              <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+                  <image class="weui-grid__icon" src='../../image/{{item.title}}.png'/>
+                  <view class="weui-grid__label">{{item.title}}</view>
+                  <view class="weui-grid__label">{{item.value}}</view>
+              </navigator>
+          </block>
+      </view>
+  </view>
+  <view class="page__bd">
+      <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{githubUserInfo.name}}</view>
+              <view class="weui-cell__ft">姓名</view>
+          </view>
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{githubUserInfo.location}}</view>
+              <view class="weui-cell__ft">地址</view>
+          </view>
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{githubUserInfo.email}}</view>
+              <view class="weui-cell__ft">邮箱</view>
+          </view>
+          <view class="weui-cell">
+              <view class="weui-cell__bd">{{githubUserInfo.blog}}</view>
+              <view class="weui-cell__ft">博客</view>
+          </view>
+      </view>
+  </view>
+
+  <view class="weui-footer">
+      <view class="weui-footer__links">
+          <navigator url="" class="weui-footer__link">关于软件</navigator>
+          <navigator url="" class="weui-footer__link">关于作者</navigator>
+      </view>
+      <view class="weui-footer__text">Copyright © 2018 lzx2005.com</view>
+      <view class="weui-footer__text">数据来源：Github</view>
+  </view>
+
+</view>
