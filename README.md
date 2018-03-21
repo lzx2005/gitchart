@@ -6,4 +6,4 @@
 
 #### 预览
 
-!()[image/ss1.jpeg]
+![](image/ss1.jpeg)
