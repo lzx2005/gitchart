@@ -26,7 +26,7 @@ Page({
       username: this.data.username
     }
     wx.request({
-      url: 'https://lzx2005.com/github/user',
+      url: 'https://lzx2005.com/api/github/user',
       data,
       header: {
         'content-type': 'application/json'
