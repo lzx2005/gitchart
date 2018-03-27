@@ -1,15 +1,8 @@
 // pages/statistics/statistics.js
 import * as echarts from '../../ec-canvas/echarts';
-
 const app = getApp();
 
-function setOption(chart, option) {
-  chart.setOption(option);
-}
-
-
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -19,32 +12,11 @@ Page({
     ec: {
       lazyLoad: true,
     },
+    calendar: {
+      lazyLoad: true,
+    },
     isLoaded: false,
     isDisposed: false
-  },
-
-  // 点击按钮后初始化图表
-  initPie: function (option) {
-    this.ecComponent.init((canvas, width, height) => {
-      // 获取组件的 canvas、width、height 后的回调函数
-      // 在这里初始化图表
-      const chart = echarts.init(canvas, null, {
-        width: width,
-        height: height
-      });
-      setOption(chart, option);
-
-      // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
-      this.chart = chart;
-
-      this.setData({
-        isLoaded: true,
-        isDisposed: false
-      });
-
-      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
-      return chart;
-    });
   },
 
   dispose: function () {
@@ -86,43 +58,7 @@ Page({
             language: res.data.data
           })
           console.log(that.data.language);
-
-
-
-          var option = {
-            backgroundColor: "#ffffff",
-            color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
-            series: [{
-
-              label: {
-                normal: {
-                  formatter: '{b|{b}:}{c}',
-                  rich: {
-                    a: {
-                      color: '#999',
-                      lineHeight: 22,
-                      align: 'center'
-                    },
-                    b: {
-                      fontSize: 16,
-                      lineHeight: 33
-                    }
-                  }
-                }
-              },
-              type: 'pie',
-              center: ['50%', '50%'],
-              radius: [0, '60%'],
-              data: that.data.language.sort(function (a, b) { return a.value - b.value; }),
-              itemStyle: {
-                emphasis: {
-                  shadowBlur: 10,
-                  shadowOffsetX: 0,
-                  shadowColor: 'rgba(0, 2, 2, 0.3)'
-                }
-              }
-            }]
-          };
+          var option = that.getPieOptions(that.data.language);
           that.initPie(option);
         } else {
           wx.showModal({
@@ -134,5 +70,84 @@ Page({
         }
       }
     })
+  },
+
+  setOption: function(chart, option) {
+    chart.setOption(option);
+  },
+  // 点击按钮后初始化图表
+  initPie: function (option) {
+    this.ecComponent.init((canvas, width, height) => {
+      // 获取组件的 canvas、width、height 后的回调函数
+      // 在这里初始化图表
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      this.setOption(chart, option);
+
+      // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
+      this.chart = chart;
+
+      this.setData({
+        isLoaded: true,
+        isDisposed: false
+      });
+
+      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+      return chart;
+    });
+  },
+  getPieOptions: function(data){
+    var labelNames = new Array();
+    for(var i in data){
+      labelNames.push(data[i].name);
+    }
+
+    console.log(labelNames)
+
+    return {
+      title: {
+        text: '编程语言比例',
+        subtext: '数据来源：Github',
+        x: 'center'
+      },
+      legend: {
+        //orient: 'vertical',
+        bottom: 10,
+        left: 'center',
+        data: labelNames
+      },
+      series: [{
+        label: {
+          normal: {
+            show: true,
+            position: 'center'
+          },
+          emphasis: {
+            show: true,
+            formatter: '{b|{b}}:{c}行',
+            rich: {
+              a: {
+                color: '#999',
+                align: 'center',
+                fontSize: 16,
+              },
+              b: {
+                fontSize: 16
+              }
+            },
+            textStyle: {
+              fontSize: '16'
+            },
+            position:"center"
+          }
+        },
+        type: 'pie',
+        radius: ['50%', '70%'],
+        avoidLabelOverlap: true,
+        data: data,
+      }]
+    };
   }
 })
