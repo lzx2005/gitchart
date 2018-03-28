@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/statistics/statistics"
+    "pages/statistics/statistics",
+    "pages/repos/repos"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +27,7 @@
         "selectedIconPath": "image/icon1/line-chart.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/repos/repos",
         "text": "项目",
         "iconPath": "image/icon1/cc-code.png",
         "selectedIconPath": "image/icon1/todo_list.png"

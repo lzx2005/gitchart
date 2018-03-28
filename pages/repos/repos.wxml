@@ -1,0 +1,31 @@
+<!--pages/repos/repos.wxml-->
+  <view wx:if="{{loading}}">
+    <view class="weui-loadmore">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line weui-loadmore__tips_in-dot"></view>
+    </view>
+  </view>
+  <view class="weui-panel" wx:for="{{repos}}" wx:key="key">
+      <view class="weui-panel__hd mid">
+        <image style="width: 13px; height: 13px; padding-right: 5px" mode="scaleToFill" src="../../image/repos/watched.png"></image>
+       Watch : {{item.watchers_count}}
+        <image class="left-line" style="width: 13px; height: 13px; padding-right: 5px;" mode="scaleToFill" src="../../image/repos/star.png"></image>
+       Star : {{item.stargazers_count}}
+        <image class="left-line" style="width: 13px; height: 13px; padding-right: 5px;" mode="scaleToFill" src="../../image/repos/code-fork.png"></image>
+       Fork : {{item.forks_count}}
+      </view>
+      <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+              <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
+              <view class="weui-media-box__desc">{{item.description}}</view>
+              <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta">更新时间</view>
+                  <view class="weui-media-box__info__meta">{{item.updated_at}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">branch {{item.default_branch}}</view>
+              </view>
+          </view>
+      </view>
+  </view>

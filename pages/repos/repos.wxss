@@ -1,0 +1,20 @@
+/* pages/repos/repos.wxss */
+
+
+.weui-loadmore__tips_in-line{
+  background-color: #F8F8F8
+}
+
+.mid{
+  vertical-align:middle;
+  flex:1;
+  display:flex;
+  align-items:center;
+  line-height:13px;
+}
+
+.left-line{
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 1px solid #cecece;
+}
