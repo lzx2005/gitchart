@@ -1,6 +1,9 @@
 <!--index.wxml-->
 <view class="container">
-  <view wx:if="{{!loading}}">
+  <view class="page__bd page__bd_spacing" wx:if="{{loadFailed}}">
+    <button class="weui-btn" type="primary" bindtap="getGithubInfo">重新加载</button>
+  </view>
+  <view wx:if="{{!loading && !loadFailed}}">
     <view class="userinfo">
       <block>
         <image wx:if="{{githubUserInfo.avatar_url}}" class="userinfo-avatar" src="{{githubUserInfo.avatar_url}}" background-size="cover"></image>

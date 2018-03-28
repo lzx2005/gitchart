@@ -8,7 +8,8 @@ Page({
     githubUserInfo:{},
     grids: [],
     username: "lzx2005",
-    loading: true
+    loading: true,
+    loadFailed: false
   },
   onLoad: function () {
     this.getGithubInfo()
@@ -21,7 +22,13 @@ Page({
       hasUserInfo: true
     })
   },
-  getGithubInfo(){
+  getGithubInfo() {
+    this.setData({
+      githubUserInfo: {},
+      grids: [],
+      loading: true,
+      loadFailed: false
+    })
     var that = this
     var data = {
       username: this.data.username
@@ -53,11 +60,14 @@ Page({
           that.setData({
             githubUserInfo: d,
             grids: array,
-            loading : false
+            loadFailed: false
           })
           console.log(array);
 
-        }else{
+        } else {
+          that.setData({
+            loadFailed: true
+          })
           wx.showModal({
             content: res.data.msg,
             showCancel: false,
@@ -65,6 +75,23 @@ Page({
             }
           });
         }
+      },
+      fail: function (e) {
+        that.setData({
+          loadFailed: true,
+        })
+        wx.showModal({
+          content: "读取失败",
+          showCancel: false,
+          success: function (res) {
+          }
+        });
+        console.log(e)
+      },
+      complete: function(){
+        that.setData({
+          loading: false
+        })
       }
     })
   }
