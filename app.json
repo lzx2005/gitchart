@@ -16,26 +16,26 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "image/tarbar/homepage.png",
-        "selectedIconPath": "image/tarbar/homepage_fill.png"
+        "iconPath": "image/icon1/home.png",
+        "selectedIconPath": "image/icon1/Home 3.png"
       },
       {
         "pagePath": "pages/statistics/statistics",
         "text": "统计",
-        "iconPath": "image/tarbar/dynamic.png",
-        "selectedIconPath": "image/tarbar/dynamic_fill.png"
+        "iconPath": "image/icon1/chart.png",
+        "selectedIconPath": "image/icon1/line-chart.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "项目",
+        "iconPath": "image/icon1/cc-code.png",
+        "selectedIconPath": "image/icon1/todo_list.png"
       },
       {
         "pagePath": "pages/index/index",
         "text": "设置",
-        "iconPath": "image/tarbar/setup.png",
-        "selectedIconPath": "image/tarbar/setup_fill.png"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "关于",
-        "iconPath": "image/tarbar/prompt.png",
-        "selectedIconPath": "image/tarbar/prompt_fill.png"
+        "iconPath": "image/icon1/sitting.png",
+        "selectedIconPath": "image/icon1/setting 设置.png"
       }
     ]
   }

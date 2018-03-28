@@ -22,3 +22,7 @@
 .usermotto {
   margin-top: 100px;
 }
+
+.weui-loadmore__tips_in-line{
+  background-color: #F8F8F8
+}

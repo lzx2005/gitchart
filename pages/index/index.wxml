@@ -1,46 +1,59 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <block>
-
-      <image wx:if="githubUserInfo.avatar_url" class="userinfo-avatar" src="{{githubUserInfo.avatar_url}}" background-size="cover"></image>
-      <image wx:else class="userinfo-avatar" src="../../image/avatar_default.png" background-size="cover"></image>
-      <text class="userinfo-nickname">{{githubUserInfo.login}}</text>
-      <text class="userinfo-nickname">{{githubUserInfo.bio}}</text>
-    </block>
+  <view wx:if="{{!loading}}">
+    <view class="userinfo">
+      <block>
+        <image wx:if="{{githubUserInfo.avatar_url}}" class="userinfo-avatar" src="{{githubUserInfo.avatar_url}}" background-size="cover"></image>
+        <image wx:else class="userinfo-avatar" src="../../image/avatar_default.png" background-size="cover"></image>
+        <text class="userinfo-nickname">{{githubUserInfo.login}}</text>
+        <text class="userinfo-nickname">{{githubUserInfo.bio}}</text>
+      </block>
+    </view>
+    <view class="page__bd">
+        <view class="weui-grids">
+            <block wx:for="{{grids}}" wx:key="key">
+                <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src='../../image/{{item.title}}.png'/>
+                    <view class="weui-grid__label">{{item.title}}</view>
+                    <view class="weui-grid__label">{{item.value}}</view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd" wx:if="{{githubUserInfo.name}}">{{githubUserInfo.name}}</view>
+                <view class="weui-cell__bd" wx:else>-</view>
+                <view class="weui-cell__ft">姓名</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd" wx:if="{{githubUserInfo.location}}">{{githubUserInfo.location}}</view>
+                <view class="weui-cell__bd" wx:else>-</view>
+                <view class="weui-cell__ft">地址</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd" wx:if="{{githubUserInfo.email}}">{{githubUserInfo.email}}</view>
+                <view class="weui-cell__bd" wx:else>-</view>
+                <view class="weui-cell__ft">邮箱</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd" wx:if="{{githubUserInfo.blog}}">{{githubUserInfo.blog}}</view>
+                <view class="weui-cell__bd" wx:else>-</view>
+                <view class="weui-cell__ft">博客</view>
+            </view>
+        </view>
+    </view>
   </view>
-  <view class="page__bd">
-      <view class="weui-grids">
-          <block wx:for="{{grids}}">
-              <navigator url="" class="weui-grid" hover-class="weui-grid_active">
-                  <image class="weui-grid__icon" src='../../image/{{item.title}}.png'/>
-                  <view class="weui-grid__label">{{item.title}}</view>
-                  <view class="weui-grid__label">{{item.value}}</view>
-              </navigator>
-          </block>
-      </view>
+  <view wx:else>
+    <view class="weui-loadmore">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line weui-loadmore__tips_in-dot"></view>
+    </view>
   </view>
-  <view class="page__bd">
-      <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell">
-              <view class="weui-cell__bd">{{githubUserInfo.name}}</view>
-              <view class="weui-cell__ft">姓名</view>
-          </view>
-          <view class="weui-cell">
-              <view class="weui-cell__bd">{{githubUserInfo.location}}</view>
-              <view class="weui-cell__ft">地址</view>
-          </view>
-          <view class="weui-cell">
-              <view class="weui-cell__bd">{{githubUserInfo.email}}</view>
-              <view class="weui-cell__ft">邮箱</view>
-          </view>
-          <view class="weui-cell">
-              <view class="weui-cell__bd">{{githubUserInfo.blog}}</view>
-              <view class="weui-cell__ft">博客</view>
-          </view>
-      </view>
-  </view>
-
   <view class="weui-footer">
       <view class="weui-footer__links">
           <navigator url="" class="weui-footer__link">关于软件</navigator>

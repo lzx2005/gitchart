@@ -1,5 +1,6 @@
 // pages/statistics/statistics.js
 import * as echarts from '../../ec-canvas/echarts';
+import util from '../../utils/util.js'
 const app = getApp();
 
 Page({
@@ -16,7 +17,8 @@ Page({
       lazyLoad: true,
     },
     isLoaded: false,
-    isDisposed: false
+    isDisposed: false,
+    updated: 0
   },
 
   dispose: function () {
@@ -53,12 +55,14 @@ Page({
       },
       success: function (res) {
         console.log(res.data)
+        var d = res.data.data
         if (res.data.code == 200) {
           that.setData({
-            language: res.data.data
+            language: d.data,
+            updated: util.formatTime(new Date(d.updated))
           })
-          console.log(that.data.language);
-          var option = that.getPieOptions(that.data.language);
+          console.log(d);
+          var option = that.getPieOptions(d.data);
           that.initPie(option);
         } else {
           wx.showModal({
@@ -99,13 +103,6 @@ Page({
     });
   },
   getPieOptions: function(data){
-    var labelNames = new Array();
-    for(var i in data){
-      labelNames.push(data[i].name);
-    }
-
-    console.log(labelNames)
-
     return {
       title: {
         text: '编程语言比例',
@@ -116,7 +113,7 @@ Page({
         //orient: 'vertical',
         bottom: 10,
         left: 'center',
-        data: labelNames
+        data: data
       },
       series: [{
         label: {

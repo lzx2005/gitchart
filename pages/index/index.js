@@ -7,7 +7,8 @@ Page({
     motto: 'Github',
     githubUserInfo:{},
     grids: [],
-    username: "lzx2005"
+    username: "lzx2005",
+    loading: true
   },
   onLoad: function () {
     this.getGithubInfo()
@@ -34,25 +35,28 @@ Page({
       success: function (res) {
         console.log(res.data)
         var array = new Array();
-        if (res.data.code==200){
+        if (res.data.code == 200) {
+          var d = res.data.data.data
           array.push({
             title: "public_repos",
-            value: res.data.data.public_repos
+            value: d.public_repos
           })
           array.push({
             title: "following",
-            value: res.data.data.following
+            value: d.following
           })
           array.push({
             title: "followers",
-            value: res.data.data.followers
+            value: d.followers
           })
 
           that.setData({
-            githubUserInfo: res.data.data,
-            grids: array
+            githubUserInfo: d,
+            grids: array,
+            loading : false
           })
           console.log(array);
+
         }else{
           wx.showModal({
             content: res.data.msg,

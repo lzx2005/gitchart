@@ -23,9 +23,9 @@
                     <ec-canvas wx:if="{{!isDisposed}}" id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" class='cavans-bar'></ec-canvas>
                     </view>
                     <view class="weui-media-box__info">
-                        <view class="weui-media-box__info__meta">文字来源</view>
-                        <view class="weui-media-box__info__meta">时间</view>
-                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+                        <view class="weui-media-box__info__meta">统计时间</view>
+                        <view class="weui-media-box__info__meta">{{updated}}</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">数据仅供参考</view>
                     </view>
                 </view>
             </view>
