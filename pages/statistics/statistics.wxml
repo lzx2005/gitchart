@@ -8,10 +8,6 @@
       </view>
   </view> -->
 
-<view class="container">
-  <ec-canvas wx:if="{{!isDisposed}}" id="mychart-dom-calendar" canvas-id="mychart-calendar" ec="{{ calendar }}"></ec-canvas>
-</view>
-
 
 <view class="page">
     <view class="page__bd">
@@ -20,7 +16,7 @@
             <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_text">
                     <view class="weui-media-box__desc cavans-view">      
-                    <ec-canvas wx:if="{{!isDisposed}}" id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" class='cavans-bar'></ec-canvas>
+                    <ec-canvas wx:if="{{!isDisposed}}" id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" class='cavans-bar'></ec-canvas>
                     </view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta">统计时间</view>
@@ -31,4 +27,23 @@
             </view>
         </view>
     </view>
+    <view class="page__bd">
+        <view class="weui-panel">
+            <view class="weui-panel__hd">编码时间分布式</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__desc cavans-view">      
+                      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+                    </view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta">统计时间</view>
+                        <view class="weui-media-box__info__meta">{{first}} - {{last}}</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">数据仅供参考</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>
+
+
